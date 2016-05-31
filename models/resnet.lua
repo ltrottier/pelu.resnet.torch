@@ -9,12 +9,16 @@
 --  The ResNet model definition
 --
 
+------------
+-- Modified to include CIFAR-100 and PELU
+-- Ludovic Trottier
+------------
+
 local nn = require 'nn'
 require 'cunn'
 
 local Convolution = cudnn.SpatialConvolution
 local Avg = cudnn.SpatialAveragePooling
-local ReLU = cudnn.ReLU
 local Max = nn.SpatialMaxPooling
 local SBatchNorm = nn.SpatialBatchNormalization
 
@@ -52,8 +56,7 @@ local function createModel(opt)
 
       local s = nn.Sequential()
       s:add(Convolution(nInputPlane,n,3,3,stride,stride,1,1))
-      s:add(SBatchNorm(n))
-      s:add(ReLU(true))
+      s:add(PELU())
       s:add(Convolution(n,n,3,3,1,1,1,1))
       s:add(SBatchNorm(n))
 
@@ -62,7 +65,6 @@ local function createModel(opt)
             :add(s)
             :add(shortcut(nInputPlane, n, stride)))
          :add(nn.CAddTable(true))
-         :add(ReLU(true))
    end
 
    -- The bottleneck residual layer for 50, 101, and 152 layer networks
@@ -72,11 +74,9 @@ local function createModel(opt)
 
       local s = nn.Sequential()
       s:add(Convolution(nInputPlane,n,1,1,1,1,0,0))
-      s:add(SBatchNorm(n))
-      s:add(ReLU(true))
+      s:add(PELU())
       s:add(Convolution(n,n,3,3,stride,stride,1,1))
-      s:add(SBatchNorm(n))
-      s:add(ReLU(true))
+      s:add(PELU())
       s:add(Convolution(n,n*4,1,1,1,1,0,0))
       s:add(SBatchNorm(n * 4))
 
@@ -85,7 +85,6 @@ local function createModel(opt)
             :add(s)
             :add(shortcut(nInputPlane, n * 4, stride)))
          :add(nn.CAddTable(true))
-         :add(ReLU(true))
    end
 
    -- Creates count residual blocks with specified number of features
@@ -116,13 +115,13 @@ local function createModel(opt)
 
       -- The ResNet ImageNet model
       model:add(Convolution(3,64,7,7,2,2,3,3))
-      model:add(SBatchNorm(64))
-      model:add(ReLU(true))
+      model:add(PELU())
       model:add(Max(3,3,2,2,1,1))
       model:add(layer(block, 64, def[1]))
       model:add(layer(block, 128, def[2], 2))
       model:add(layer(block, 256, def[3], 2))
       model:add(layer(block, 512, def[4], 2))
+      model:add(PELU())
       model:add(Avg(7, 7, 1, 1))
       model:add(nn.View(nFeatures):setNumInputDims(3))
       model:add(nn.Linear(nFeatures, 1000))
@@ -135,14 +134,31 @@ local function createModel(opt)
 
       -- The ResNet CIFAR-10 model
       model:add(Convolution(3,16,3,3,1,1,1,1))
-      model:add(SBatchNorm(16))
-      model:add(ReLU(true))
+      model:add(PELU())
       model:add(layer(basicblock, 16, n))
       model:add(layer(basicblock, 32, n, 2))
       model:add(layer(basicblock, 64, n, 2))
+      model:add(PELU())
       model:add(Avg(8, 8, 1, 1))
       model:add(nn.View(64):setNumInputDims(3))
       model:add(nn.Linear(64, 10))
+   elseif opt.dataset == 'cifar100' then
+      -- Model type specifies number of layers for CIFAR-100 model
+      assert((depth - 2) % 6 == 0, 'depth should be one of 20, 32, 44, 56, 110, 1202')
+      local n = (depth - 2) / 6
+      iChannels = 16
+      print(' | ResNet-' .. depth .. ' CIFAR-100')
+
+      -- The ResNet CIFAR-100 model
+      model:add(Convolution(3,16,3,3,1,1,1,1))
+      model:add(PELU())
+      model:add(layer(basicblock, 16, n))
+      model:add(layer(basicblock, 32, n, 2))
+      model:add(layer(basicblock, 64, n, 2))
+      model:add(PELU())
+      model:add(Avg(8, 8, 1, 1))
+      model:add(nn.View(64):setNumInputDims(3))
+      model:add(nn.Linear(64, 100))
    else
       error('invalid dataset: ' .. opt.dataset)
    end

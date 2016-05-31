@@ -6,6 +6,12 @@
 --  LICENSE file in the root directory of this source tree. An additional grant
 --  of patent rights can be found in the PATENTS file in the same directory.
 --
+
+------------
+-- Modified to include CIFAR-100
+-- Ludovic Trottier
+------------
+
 local M = { }
 
 function M.parse(arg)
@@ -17,8 +23,8 @@ function M.parse(arg)
     ------------ General options --------------------
 
    cmd:option('-data',       '',         'Path to dataset')
-   cmd:option('-dataset',    'imagenet', 'Options: imagenet | cifar10')
-   cmd:option('-manualSeed', 0,          'Manually set RNG seed')
+   cmd:option('-dataset',    'imagenet', 'Options: imagenet | cifar10 | cifar100')
+   cmd:option('-manualSeed', 2,          'Manually set RNG seed')
    cmd:option('-nGPU',       1,          'Number of GPUs to use by default')
    cmd:option('-backend',    'cudnn',    'Options: cudnn | cunn')
    cmd:option('-cudnn',      'fastest',  'Options: fastest | default | deterministic')
@@ -37,7 +43,7 @@ function M.parse(arg)
    cmd:option('-momentum',        0.9,   'momentum')
    cmd:option('-weightDecay',     1e-4,  'weight decay')
    ---------- Model options ----------------------------------
-   cmd:option('-netType',      'resnet', 'Options: resnet | preresnet')
+   cmd:option('-netType',      'resnet', 'Options: resnet')
    cmd:option('-depth',        34,       'ResNet depth: 18 | 34 | 50 | 101 | ...', 'number')
    cmd:option('-shortcutType', '',       'Options: A | B | C')
    cmd:option('-retrain',      'none',   'Path to model to retrain with')
@@ -66,7 +72,7 @@ function M.parse(arg)
       -- Default shortcutType=B and nEpochs=90
       opt.shortcutType = opt.shortcutType == '' and 'B' or opt.shortcutType
       opt.nEpochs = opt.nEpochs == 0 and 90 or opt.nEpochs
-   elseif opt.dataset == 'cifar10' then
+   elseif opt.dataset == 'cifar10' or opt.dataset == 'cifar100' then
       -- Default shortcutType=A and nEpochs=164
       opt.shortcutType = opt.shortcutType == '' and 'A' or opt.shortcutType
       opt.nEpochs = opt.nEpochs == 0 and 164 or opt.nEpochs
