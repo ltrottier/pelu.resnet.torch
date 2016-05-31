@@ -9,14 +9,15 @@ This implements training of residual networks from [Parametric Exponential Linea
 See the [installation instructions](INSTALL.md) for a step-by-step guide.
 - Install [Torch](http://torch.ch/docs/getting-started.html) on a machine with CUDA GPU
 - Install [cuDNN v4](https://developer.nvidia.com/cudnn) and the Torch [cuDNN bindings](https://github.com/soumith/cudnn.torch/tree/R4)
-- Download the [ImageNet](http://image-net.org/download-images) dataset and [move validation images](https://github.com/facebook/fb.resnet.torch/blob/master/INSTALL.md#download-the-imagenet-dataset) to labeled subfolders
+- (Optional) Download the [ImageNet](http://image-net.org/download-images) dataset and [move validation images](https://github.com/facebook/fb.resnet.torch/blob/master/INSTALL.md#download-the-imagenet-dataset) to labeled subfolders
 
 If you already have Torch installed, update `nn`, `cunn`, and `cudnn`.
 
 ## Training
-See the [training recipes](TRAINING.md) for additional examples.
 
-To get the same results as (http://arxiv.org/abs/1512.03385), use the following commands.
+(See the [training recipes](TRAINING.md) for additional examples.)
+
+To get the same results as [Parametric Exponential Linear Unit for Deep Convolutional Neural Networks](http://arxiv.org/abs/1512.03385), use the following commands.
 
 ### CIFAR-10
 ```bash
@@ -31,6 +32,7 @@ th main.lua -dataset cifar100 -nGPU 2 -batchSize 128 -nEpochs 200 -depth 110 -sh
 ```
 
 You should get around 25.5% top 1 error.
+
 
 ## ResNet ReLU vs ResNet ELU/PELU
 
