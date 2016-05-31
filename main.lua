@@ -17,7 +17,6 @@ local opts = require 'opts'
 local checkpoints = require 'checkpoints'
 
 torch.setdefaulttensortype('torch.FloatTensor')
-torch.setnumthreads(1)
 
 local opt = opts.parse(arg)
 torch.manualSeed(opt.manualSeed)
@@ -25,6 +24,7 @@ cutorch.manualSeedAll(opt.manualSeed)
 
 -- Load previous checkpoint, if it exists
 local checkpoint, optimState = checkpoints.latest(opt)
+local optimState = checkpoint and torch.load(checkpoint.optimFile) or nil
 
 -- Create model
 local model, criterion = models.setup(opt, checkpoint)
