@@ -20,14 +20,14 @@ To get the same results as (http://arxiv.org/abs/1512.03385), use the following 
 
 ### CIFAR-10
 ```bash
-th main.lua -dataset cifar10 -nGPU 2 -batchSize 128 -nEpochs 200 -depth 110 -shortcutType A -weightDecay 0.01 
+th main.lua -dataset cifar10 -nGPU 2 -batchSize 128 -nEpochs 200 -depth 110 -shortcutType A -weightDecay 0.001 
 ```
 
 You should get around 5.4% top 1 error.
 
 ### CIFAR-100
 ```bash
-th main.lua -dataset cifar100 -nGPU 2 -batchSize 128 -nEpochs 200 -depth 110 -shortcutType A -weightDecay 0.01
+th main.lua -dataset cifar100 -nGPU 2 -batchSize 128 -nEpochs 200 -depth 110 -shortcutType A -weightDecay 0.001
 ```
 
 You should get around 25.5% top 1 error.
