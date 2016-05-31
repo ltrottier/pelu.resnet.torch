@@ -1,10 +1,9 @@
-ResNet training in Torch
+Parametric Exponential Linear Unit (PELU) for ResNet training in Torch
 ============================
 
-This implements training of residual networks from [Deep Residual Learning for Image Recognition](http://arxiv.org/abs/1512.03385) by Kaiming He, et. al.
+This project is a clone of [Facebook ResNet implementation using ReLU](https://github.com/facebook/fb.resnet.torch).
 
-[We wrote a more verbose blog post discussing this code, and ResNets in general here.](http://torch.ch/blog/2016/02/04/resnets.html)
-
+This implements training of residual networks from [Parametric Exponential Linear Unit for Deep Convolutional Neural Networks](http://arxiv.org/abs/1512.03385) by Trottier, L., et. al (2016).
 
 ## Requirements
 See the [installation instructions](INSTALL.md) for a step-by-step guide.
@@ -15,39 +14,35 @@ See the [installation instructions](INSTALL.md) for a step-by-step guide.
 If you already have Torch installed, update `nn`, `cunn`, and `cudnn`.
 
 ## Training
-See the [training recipes](TRAINING.md) for addition examples.
+See the [training recipes](TRAINING.md) for additional examples.
 
-The training scripts come with several options, which can be listed with the `--help` flag.
+To get the same results as (http://arxiv.org/abs/1512.03385), use the following commands.
+
+### CIFAR-10
 ```bash
-th main.lua --help
+th main.lua -dataset cifar10 -nGPU 2 -batchSize 128 -nEpochs 200 -depth 110 -shortcutType A -weightDecay 0.01 
 ```
 
-To run the training, simply run main.lua. By default, the script runs ResNet-34 on ImageNet with 1 GPU and 2 data-loader threads.
+You should get around 5.4% top 1 error.
+
+### CIFAR-100
 ```bash
-th main.lua -data [imagenet-folder with train and val folders]
+th main.lua -dataset cifar100 -nGPU 2 -batchSize 128 -nEpochs 200 -depth 110 -shortcutType A -weightDecay 0.01
 ```
 
-To train ResNet-50 on 4 GPUs:
-```bash
-th main.lua -depth 50 -batchSize 256 -nGPU 4 -nThreads 8 -shareGradInput true -data [imagenet-folder]
-```
+You should get around 25.5% top 1 error.
 
-## Trained models
+## ResNet ReLU vs ResNet ELU/PELU
 
-Trained ResNet 18, 34, 50, 101, 152, and 200 models are [available for download](pretrained). We include instructions for [using a custom dataset](pretrained/README.md#fine-tuning-on-a-custom-dataset), [classifying an image and getting the model's top5 predictions](pretrained/README.md#classification), and for [extracting image features](pretrained/README.md#extracting-image-features) using a pre-trained model.
+There are 3 differences between [Facebook ResNet implementation using ReLU](https://github.com/facebook/fb.resnet.torch) and this implementation using PELU:
 
-The trained models achieve better error rates than the [original ResNet models](https://github.com/KaimingHe/deep-residual-networks).
+1. We remove Batch Normalization (BN) before the activation function. This was pointed out by [Shah, A., et. al. (2016)](https://arxiv.org/pdf/1604.04112.pdf), for ELU, where using BN degraded performances.
+2. We remove the activation function after the skip connection. Again pointed out [Shah, A., et. al. (2016)](https://arxiv.org/pdf/1604.04112.pdf), for ELU.
+3. We added an activation function before the last average pooling.
 
-#### Single-crop (224x224) validation error rate
 
-| Network       | Top-1 error | Top-5 error |
-| ------------- | ----------- | ----------- |
-| ResNet-18     | 30.43       | 10.76       |
-| ResNet-34     | 26.73       | 8.74        |
-| ResNet-50     | 24.01       | 7.02        |
-| ResNet-101    | 22.44       | 6.21        |
-| ResNet-152    | 22.16       | 6.16        |
-| ResNet-200    | 21.66       | 5.79        |
+
+
 
 ## Notes
 

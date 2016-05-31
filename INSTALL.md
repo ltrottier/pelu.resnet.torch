@@ -87,6 +87,6 @@ The ImageNet Large Scale Visual Recognition Challenge (ILSVRC) dataset has 1000 
 
 ## Download Torch ResNet
 ```bash
-git clone https://github.com/facebook/fb.resnet.torch.git
-cd fb.resnet.torch
+git clone https://github.com/facebook/pelu.resnet.torch
+cd pelu.resnet.torch
 ```
