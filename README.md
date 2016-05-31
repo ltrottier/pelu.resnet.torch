@@ -3,7 +3,7 @@ Parametric Exponential Linear Unit (PELU) for ResNet training in Torch
 
 This project is a clone of [Facebook ResNet implementation using ReLU](https://github.com/facebook/fb.resnet.torch).
 
-This implements training of residual networks from [Parametric Exponential Linear Unit for Deep Convolutional Neural Networks](http://arxiv.org/abs/1512.03385) by Trottier, L., et. al (2016).
+This implements training of residual networks from [Parametric Exponential Linear Unit for Deep Convolutional Neural Networks](http://arxiv.org/abs/1605.09332) by Trottier, L., et. al (2016).
 
 ## Requirements
 See the [installation instructions](INSTALL.md) for a step-by-step guide.
@@ -17,7 +17,7 @@ If you already have Torch installed, update `nn`, `cunn`, and `cudnn`.
 
 (See the [training recipes](TRAINING.md) for additional examples.)
 
-To get the same results as [Parametric Exponential Linear Unit for Deep Convolutional Neural Networks](http://arxiv.org/abs/1512.03385), use the following commands.
+To get the same results as [Parametric Exponential Linear Unit for Deep Convolutional Neural Networks](http://arxiv.org/abs/1605.09332), use the following commands.
 
 ### CIFAR-10
 ```bash
