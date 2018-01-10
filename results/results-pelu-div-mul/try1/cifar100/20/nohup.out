@@ -1,0 +1,865 @@
+=> Creating model from file: models/resnet.lua	
+ | ResNet-20 CIFAR-100	
+nn.Sequential {
+  [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> (7) -> (8) -> (9) -> output]
+  (1): cudnn.SpatialConvolution(3 -> 16, 3x3, 1,1, 1,1) without bias
+  (2): nn.Sequential {
+    [input -> (1) -> (2) -> (3) -> output]
+    (1): nn.ConstrainedDiv
+    (2): nn.ELU (alpha:1.000000)
+    (3): nn.ConstrainedMul
+  }
+  (3): nn.Sequential {
+    [input -> (1) -> (2) -> (3) -> output]
+    (1): nn.Sequential {
+      [input -> (1) -> (2) -> output]
+      (1): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> output]
+          |      (1): cudnn.SpatialConvolution(16 -> 16, 3x3, 1,1, 1,1) without bias
+          |      (2): nn.Sequential {
+          |        [input -> (1) -> (2) -> (3) -> output]
+          |        (1): nn.ConstrainedDiv
+          |        (2): nn.ELU (alpha:1.000000)
+          |        (3): nn.ConstrainedMul
+          |      }
+          |      (3): cudnn.SpatialConvolution(16 -> 16, 3x3, 1,1, 1,1) without bias
+          |      (4): nn.SpatialBatchNormalization (4D) (16)
+          |    }
+           `-> (2): nn.Identity
+           ... -> output
+      }
+      (2): nn.CAddTable
+    }
+    (2): nn.Sequential {
+      [input -> (1) -> (2) -> output]
+      (1): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> output]
+          |      (1): cudnn.SpatialConvolution(16 -> 16, 3x3, 1,1, 1,1) without bias
+          |      (2): nn.Sequential {
+          |        [input -> (1) -> (2) -> (3) -> output]
+          |        (1): nn.ConstrainedDiv
+          |        (2): nn.ELU (alpha:1.000000)
+          |        (3): nn.ConstrainedMul
+          |      }
+          |      (3): cudnn.SpatialConvolution(16 -> 16, 3x3, 1,1, 1,1) without bias
+          |      (4): nn.SpatialBatchNormalization (4D) (16)
+          |    }
+           `-> (2): nn.Identity
+           ... -> output
+      }
+      (2): nn.CAddTable
+    }
+    (3): nn.Sequential {
+      [input -> (1) -> (2) -> output]
+      (1): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> output]
+          |      (1): cudnn.SpatialConvolution(16 -> 16, 3x3, 1,1, 1,1) without bias
+          |      (2): nn.Sequential {
+          |        [input -> (1) -> (2) -> (3) -> output]
+          |        (1): nn.ConstrainedDiv
+          |        (2): nn.ELU (alpha:1.000000)
+          |        (3): nn.ConstrainedMul
+          |      }
+          |      (3): cudnn.SpatialConvolution(16 -> 16, 3x3, 1,1, 1,1) without bias
+          |      (4): nn.SpatialBatchNormalization (4D) (16)
+          |    }
+           `-> (2): nn.Identity
+           ... -> output
+      }
+      (2): nn.CAddTable
+    }
+  }
+  (4): nn.Sequential {
+    [input -> (1) -> (2) -> (3) -> output]
+    (1): nn.Sequential {
+      [input -> (1) -> (2) -> output]
+      (1): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> output]
+          |      (1): cudnn.SpatialConvolution(16 -> 32, 3x3, 2,2, 1,1) without bias
+          |      (2): nn.Sequential {
+          |        [input -> (1) -> (2) -> (3) -> output]
+          |        (1): nn.ConstrainedDiv
+          |        (2): nn.ELU (alpha:1.000000)
+          |        (3): nn.ConstrainedMul
+          |      }
+          |      (3): cudnn.SpatialConvolution(32 -> 32, 3x3, 1,1, 1,1) without bias
+          |      (4): nn.SpatialBatchNormalization (4D) (32)
+          |    }
+           `-> (2): nn.Sequential {
+                 [input -> (1) -> (2) -> output]
+                 (1): nn.SpatialAveragePooling(1x1, 2,2)
+                 (2): nn.Concat {
+                   input
+                     |`-> (1): nn.Identity
+                      `-> (2): nn.MulConstant
+                      ... -> output
+                 }
+               }
+           ... -> output
+      }
+      (2): nn.CAddTable
+    }
+    (2): nn.Sequential {
+      [input -> (1) -> (2) -> output]
+      (1): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> output]
+          |      (1): cudnn.SpatialConvolution(32 -> 32, 3x3, 1,1, 1,1) without bias
+          |      (2): nn.Sequential {
+          |        [input -> (1) -> (2) -> (3) -> output]
+          |        (1): nn.ConstrainedDiv
+          |        (2): nn.ELU (alpha:1.000000)
+          |        (3): nn.ConstrainedMul
+          |      }
+          |      (3): cudnn.SpatialConvolution(32 -> 32, 3x3, 1,1, 1,1) without bias
+          |      (4): nn.SpatialBatchNormalization (4D) (32)
+          |    }
+           `-> (2): nn.Identity
+           ... -> output
+      }
+      (2): nn.CAddTable
+    }
+    (3): nn.Sequential {
+      [input -> (1) -> (2) -> output]
+      (1): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> output]
+          |      (1): cudnn.SpatialConvolution(32 -> 32, 3x3, 1,1, 1,1) without bias
+          |      (2): nn.Sequential {
+          |        [input -> (1) -> (2) -> (3) -> output]
+          |        (1): nn.ConstrainedDiv
+          |        (2): nn.ELU (alpha:1.000000)
+          |        (3): nn.ConstrainedMul
+          |      }
+          |      (3): cudnn.SpatialConvolution(32 -> 32, 3x3, 1,1, 1,1) without bias
+          |      (4): nn.SpatialBatchNormalization (4D) (32)
+          |    }
+           `-> (2): nn.Identity
+           ... -> output
+      }
+      (2): nn.CAddTable
+    }
+  }
+  (5): nn.Sequential {
+    [input -> (1) -> (2) -> (3) -> output]
+    (1): nn.Sequential {
+      [input -> (1) -> (2) -> output]
+      (1): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> output]
+          |      (1): cudnn.SpatialConvolution(32 -> 64, 3x3, 2,2, 1,1) without bias
+          |      (2): nn.Sequential {
+          |        [input -> (1) -> (2) -> (3) -> output]
+          |        (1): nn.ConstrainedDiv
+          |        (2): nn.ELU (alpha:1.000000)
+          |        (3): nn.ConstrainedMul
+          |      }
+          |      (3): cudnn.SpatialConvolution(64 -> 64, 3x3, 1,1, 1,1) without bias
+          |      (4): nn.SpatialBatchNormalization (4D) (64)
+          |    }
+           `-> (2): nn.Sequential {
+                 [input -> (1) -> (2) -> output]
+                 (1): nn.SpatialAveragePooling(1x1, 2,2)
+                 (2): nn.Concat {
+                   input
+                     |`-> (1): nn.Identity
+                      `-> (2): nn.MulConstant
+                      ... -> output
+                 }
+               }
+           ... -> output
+      }
+      (2): nn.CAddTable
+    }
+    (2): nn.Sequential {
+      [input -> (1) -> (2) -> output]
+      (1): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> output]
+          |      (1): cudnn.SpatialConvolution(64 -> 64, 3x3, 1,1, 1,1) without bias
+          |      (2): nn.Sequential {
+          |        [input -> (1) -> (2) -> (3) -> output]
+          |        (1): nn.ConstrainedDiv
+          |        (2): nn.ELU (alpha:1.000000)
+          |        (3): nn.ConstrainedMul
+          |      }
+          |      (3): cudnn.SpatialConvolution(64 -> 64, 3x3, 1,1, 1,1) without bias
+          |      (4): nn.SpatialBatchNormalization (4D) (64)
+          |    }
+           `-> (2): nn.Identity
+           ... -> output
+      }
+      (2): nn.CAddTable
+    }
+    (3): nn.Sequential {
+      [input -> (1) -> (2) -> output]
+      (1): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> output]
+          |      (1): cudnn.SpatialConvolution(64 -> 64, 3x3, 1,1, 1,1) without bias
+          |      (2): nn.Sequential {
+          |        [input -> (1) -> (2) -> (3) -> output]
+          |        (1): nn.ConstrainedDiv
+          |        (2): nn.ELU (alpha:1.000000)
+          |        (3): nn.ConstrainedMul
+          |      }
+          |      (3): cudnn.SpatialConvolution(64 -> 64, 3x3, 1,1, 1,1) without bias
+          |      (4): nn.SpatialBatchNormalization (4D) (64)
+          |    }
+           `-> (2): nn.Identity
+           ... -> output
+      }
+      (2): nn.CAddTable
+    }
+  }
+  (6): nn.Sequential {
+    [input -> (1) -> (2) -> (3) -> output]
+    (1): nn.ConstrainedDiv
+    (2): nn.ELU (alpha:1.000000)
+    (3): nn.ConstrainedMul
+  }
+  (7): cudnn.SpatialAveragePooling(8x8, 1,1)
+  (8): nn.View(64)
+  (9): nn.Linear(64 -> 100)
+}
+=> Training epoch # 1	
+ * Finished epoch # 1     top1:  85.303  top5:  60.801
+	
+ * Best model 	85.302734375	60.80078125	
+=> Training epoch # 2	
+ * Finished epoch # 2     top1:  80.059  top5:  50.869
+	
+ * Best model 	80.05859375	50.869140625	
+=> Training epoch # 3	
+ * Finished epoch # 3     top1:  71.133  top5:  38.066
+	
+ * Best model 	71.1328125	38.06640625	
+=> Training epoch # 4	
+ * Finished epoch # 4     top1:  63.359  top5:  30.439
+	
+ * Best model 	63.359375	30.439453125	
+=> Training epoch # 5	
+ * Finished epoch # 5     top1:  59.600  top5:  27.100
+	
+ * Best model 	59.599609375	27.099609375	
+=> Training epoch # 6	
+ * Finished epoch # 6     top1:  60.283  top5:  28.311
+	
+=> Training epoch # 7	
+ * Finished epoch # 7     top1:  57.920  top5:  26.475
+	
+ * Best model 	57.919921875	26.474609375	
+=> Training epoch # 8	
+ * Finished epoch # 8     top1:  55.225  top5:  24.678
+	
+ * Best model 	55.224609375	24.677734375	
+=> Training epoch # 9	
+ * Finished epoch # 9     top1:  54.717  top5:  22.881
+	
+ * Best model 	54.716796875	22.880859375	
+=> Training epoch # 10	
+ * Finished epoch # 10     top1:  53.945  top5:  22.285
+	
+ * Best model 	53.9453125	22.28515625	
+=> Training epoch # 11	
+ * Finished epoch # 11     top1:  53.779  top5:  22.373
+	
+ * Best model 	53.779296875	22.373046875	
+=> Training epoch # 12	
+ * Finished epoch # 12     top1:  51.807  top5:  19.707
+	
+ * Best model 	51.806640625	19.70703125	
+=> Training epoch # 13	
+ * Finished epoch # 13     top1:  56.865  top5:  25.029
+	
+=> Training epoch # 14	
+ * Finished epoch # 14     top1:  49.629  top5:  20.107
+	
+ * Best model 	49.62890625	20.107421875	
+=> Training epoch # 15	
+ * Finished epoch # 15     top1:  50.312  top5:  19.668
+	
+=> Training epoch # 16	
+ * Finished epoch # 16     top1:  51.758  top5:  21.084
+	
+=> Training epoch # 17	
+ * Finished epoch # 17     top1:  50.703  top5:  18.564
+	
+=> Training epoch # 18	
+ * Finished epoch # 18     top1:  49.551  top5:  18.848
+	
+ * Best model 	49.55078125	18.84765625	
+=> Training epoch # 19	
+ * Finished epoch # 19     top1:  50.459  top5:  19.590
+	
+=> Training epoch # 20	
+ * Finished epoch # 20     top1:  51.416  top5:  20.742
+	
+=> Training epoch # 21	
+ * Finished epoch # 21     top1:  54.404  top5:  22.900
+	
+=> Training epoch # 22	
+ * Finished epoch # 22     top1:  50.576  top5:  20.693
+	
+=> Training epoch # 23	
+ * Finished epoch # 23     top1:  49.932  top5:  19.395
+	
+=> Training epoch # 24	
+ * Finished epoch # 24     top1:  50.430  top5:  19.541
+	
+=> Training epoch # 25	
+ * Finished epoch # 25     top1:  50.332  top5:  20.479
+	
+=> Training epoch # 26	
+ * Finished epoch # 26     top1:  48.350  top5:  17.627
+	
+ * Best model 	48.349609375	17.626953125	
+=> Training epoch # 27	
+ * Finished epoch # 27     top1:  50.029  top5:  19.160
+	
+=> Training epoch # 28	
+ * Finished epoch # 28     top1:  48.027  top5:  18.125
+	
+ * Best model 	48.02734375	18.125	
+=> Training epoch # 29	
+ * Finished epoch # 29     top1:  49.072  top5:  18.037
+	
+=> Training epoch # 30	
+ * Finished epoch # 30     top1:  46.777  top5:  17.090
+	
+ * Best model 	46.77734375	17.08984375	
+=> Training epoch # 31	
+ * Finished epoch # 31     top1:  47.783  top5:  17.002
+	
+=> Training epoch # 32	
+ * Finished epoch # 32     top1:  49.492  top5:  18.809
+	
+=> Training epoch # 33	
+ * Finished epoch # 33     top1:  50.088  top5:  18.398
+	
+=> Training epoch # 34	
+ * Finished epoch # 34     top1:  48.252  top5:  17.305
+	
+=> Training epoch # 35	
+ * Finished epoch # 35     top1:  48.320  top5:  18.652
+	
+=> Training epoch # 36	
+ * Finished epoch # 36     top1:  48.916  top5:  19.062
+	
+=> Training epoch # 37	
+ * Finished epoch # 37     top1:  49.092  top5:  19.238
+	
+=> Training epoch # 38	
+ * Finished epoch # 38     top1:  47.529  top5:  17.715
+	
+=> Training epoch # 39	
+ * Finished epoch # 39     top1:  51.074  top5:  20.322
+	
+=> Training epoch # 40	
+ * Finished epoch # 40     top1:  47.373  top5:  17.764
+	
+=> Training epoch # 41	
+ * Finished epoch # 41     top1:  50.791  top5:  18.955
+	
+=> Training epoch # 42	
+ * Finished epoch # 42     top1:  44.736  top5:  15.293
+	
+ * Best model 	44.736328125	15.29296875	
+=> Training epoch # 43	
+ * Finished epoch # 43     top1:  55.635  top5:  23.887
+	
+=> Training epoch # 44	
+ * Finished epoch # 44     top1:  45.303  top5:  15.850
+	
+=> Training epoch # 45	
+ * Finished epoch # 45     top1:  50.469  top5:  20.596
+	
+=> Training epoch # 46	
+ * Finished epoch # 46     top1:  48.076  top5:  18.916
+	
+=> Training epoch # 47	
+ * Finished epoch # 47     top1:  47.578  top5:  17.305
+	
+=> Training epoch # 48	
+ * Finished epoch # 48     top1:  48.320  top5:  17.822
+	
+=> Training epoch # 49	
+ * Finished epoch # 49     top1:  51.299  top5:  20.332
+	
+=> Training epoch # 50	
+ * Finished epoch # 50     top1:  45.283  top5:  17.129
+	
+=> Training epoch # 51	
+ * Finished epoch # 51     top1:  47.158  top5:  18.047
+	
+=> Training epoch # 52	
+ * Finished epoch # 52     top1:  45.488  top5:  16.904
+	
+=> Training epoch # 53	
+ * Finished epoch # 53     top1:  50.000  top5:  19.404
+	
+=> Training epoch # 54	
+ * Finished epoch # 54     top1:  52.168  top5:  20.361
+	
+=> Training epoch # 55	
+ * Finished epoch # 55     top1:  47.148  top5:  17.461
+	
+=> Training epoch # 56	
+ * Finished epoch # 56     top1:  48.779  top5:  18.955
+	
+=> Training epoch # 57	
+ * Finished epoch # 57     top1:  54.111  top5:  22.549
+	
+=> Training epoch # 58	
+ * Finished epoch # 58     top1:  47.520  top5:  17.754
+	
+=> Training epoch # 59	
+ * Finished epoch # 59     top1:  46.562  top5:  16.367
+	
+=> Training epoch # 60	
+ * Finished epoch # 60     top1:  47.363  top5:  18.438
+	
+=> Training epoch # 61	
+ * Finished epoch # 61     top1:  48.330  top5:  19.287
+	
+=> Training epoch # 62	
+ * Finished epoch # 62     top1:  49.873  top5:  19.336
+	
+=> Training epoch # 63	
+ * Finished epoch # 63     top1:  46.992  top5:  17.412
+	
+=> Training epoch # 64	
+ * Finished epoch # 64     top1:  46.367  top5:  17.109
+	
+=> Training epoch # 65	
+ * Finished epoch # 65     top1:  46.553  top5:  16.641
+	
+=> Training epoch # 66	
+ * Finished epoch # 66     top1:  46.338  top5:  16.738
+	
+=> Training epoch # 67	
+ * Finished epoch # 67     top1:  57.676  top5:  26.553
+	
+=> Training epoch # 68	
+ * Finished epoch # 68     top1:  50.498  top5:  20.537
+	
+=> Training epoch # 69	
+ * Finished epoch # 69     top1:  48.984  top5:  18.711
+	
+=> Training epoch # 70	
+ * Finished epoch # 70     top1:  48.330  top5:  18.740
+	
+=> Training epoch # 71	
+ * Finished epoch # 71     top1:  51.621  top5:  21.318
+	
+=> Training epoch # 72	
+ * Finished epoch # 72     top1:  47.715  top5:  18.340
+	
+=> Training epoch # 73	
+ * Finished epoch # 73     top1:  46.836  top5:  17.490
+	
+=> Training epoch # 74	
+ * Finished epoch # 74     top1:  44.639  top5:  16.455
+	
+ * Best model 	44.638671875	16.455078125	
+=> Training epoch # 75	
+ * Finished epoch # 75     top1:  46.592  top5:  16.211
+	
+=> Training epoch # 76	
+ * Finished epoch # 76     top1:  48.877  top5:  19.121
+	
+=> Training epoch # 77	
+ * Finished epoch # 77     top1:  46.055  top5:  16.592
+	
+=> Training epoch # 78	
+ * Finished epoch # 78     top1:  48.301  top5:  18.301
+	
+=> Training epoch # 79	
+ * Finished epoch # 79     top1:  46.357  top5:  16.621
+	
+=> Training epoch # 80	
+ * Finished epoch # 80     top1:  44.111  top5:  14.961
+	
+ * Best model 	44.111328125	14.9609375	
+=> Training epoch # 81	
+ * Finished epoch # 81     top1:  33.740  top5:   9.307
+	
+ * Best model 	33.740234375	9.306640625	
+=> Training epoch # 82	
+ * Finished epoch # 82     top1:  32.852  top5:   9.463
+	
+ * Best model 	32.8515625	9.462890625	
+=> Training epoch # 83	
+ * Finished epoch # 83     top1:  33.027  top5:   8.975
+	
+=> Training epoch # 84	
+ * Finished epoch # 84     top1:  32.598  top5:   8.926
+	
+ * Best model 	32.59765625	8.92578125	
+=> Training epoch # 85	
+ * Finished epoch # 85     top1:  33.115  top5:   9.365
+	
+=> Training epoch # 86	
+ * Finished epoch # 86     top1:  32.324  top5:   9.150
+	
+ * Best model 	32.32421875	9.150390625	
+=> Training epoch # 87	
+ * Finished epoch # 87     top1:  32.598  top5:   9.648
+	
+=> Training epoch # 88	
+ * Finished epoch # 88     top1:  33.633  top5:   9.678
+	
+=> Training epoch # 89	
+ * Finished epoch # 89     top1:  34.414  top5:   9.492
+	
+=> Training epoch # 90	
+ * Finished epoch # 90     top1:  33.555  top5:   9.961
+	
+=> Training epoch # 91	
+ * Finished epoch # 91     top1:  33.896  top5:   9.492
+	
+=> Training epoch # 92	
+ * Finished epoch # 92     top1:  32.402  top5:   9.307
+	
+=> Training epoch # 93	
+ * Finished epoch # 93     top1:  34.043  top5:   9.277
+	
+=> Training epoch # 94	
+ * Finished epoch # 94     top1:  33.545  top5:   9.756
+	
+=> Training epoch # 95	
+ * Finished epoch # 95     top1:  33.838  top5:   9.990
+	
+=> Training epoch # 96	
+ * Finished epoch # 96     top1:  33.496  top5:   9.443
+	
+=> Training epoch # 97	
+ * Finished epoch # 97     top1:  34.053  top5:   9.707
+	
+=> Training epoch # 98	
+ * Finished epoch # 98     top1:  34.180  top5:  10.020
+	
+=> Training epoch # 99	
+ * Finished epoch # 99     top1:  33.467  top5:   9.834
+	
+=> Training epoch # 100	
+ * Finished epoch # 100     top1:  34.590  top5:  10.039
+	
+=> Training epoch # 101	
+ * Finished epoch # 101     top1:  34.727  top5:   9.453
+	
+=> Training epoch # 102	
+ * Finished epoch # 102     top1:  34.395  top5:  10.059
+	
+=> Training epoch # 103	
+ * Finished epoch # 103     top1:  34.258  top5:   9.785
+	
+=> Training epoch # 104	
+ * Finished epoch # 104     top1:  34.209  top5:  10.107
+	
+=> Training epoch # 105	
+ * Finished epoch # 105     top1:  34.199  top5:  10.107
+	
+=> Training epoch # 106	
+ * Finished epoch # 106     top1:  34.277  top5:  10.381
+	
+=> Training epoch # 107	
+ * Finished epoch # 107     top1:  34.990  top5:  10.156
+	
+=> Training epoch # 108	
+ * Finished epoch # 108     top1:  34.492  top5:   9.922
+	
+=> Training epoch # 109	
+ * Finished epoch # 109     top1:  34.971  top5:  10.771
+	
+=> Training epoch # 110	
+ * Finished epoch # 110     top1:  33.965  top5:   9.785
+	
+=> Training epoch # 111	
+ * Finished epoch # 111     top1:  34.180  top5:   9.941
+	
+=> Training epoch # 112	
+ * Finished epoch # 112     top1:  35.264  top5:  10.537
+	
+=> Training epoch # 113	
+ * Finished epoch # 113     top1:  34.541  top5:   9.814
+	
+=> Training epoch # 114	
+ * Finished epoch # 114     top1:  35.293  top5:  10.508
+	
+=> Training epoch # 115	
+ * Finished epoch # 115     top1:  35.508  top5:  10.850
+	
+=> Training epoch # 116	
+ * Finished epoch # 116     top1:  34.951  top5:  10.322
+	
+=> Training epoch # 117	
+ * Finished epoch # 117     top1:  35.176  top5:  10.088
+	
+=> Training epoch # 118	
+ * Finished epoch # 118     top1:  34.424  top5:  10.166
+	
+=> Training epoch # 119	
+ * Finished epoch # 119     top1:  34.980  top5:  10.137
+	
+=> Training epoch # 120	
+ * Finished epoch # 120     top1:  34.941  top5:   9.873
+	
+=> Training epoch # 121	
+ * Finished epoch # 121     top1:  34.170  top5:   9.932
+	
+=> Training epoch # 122	
+ * Finished epoch # 122     top1:  31.191  top5:   8.486
+	
+ * Best model 	31.19140625	8.486328125	
+=> Training epoch # 123	
+ * Finished epoch # 123     top1:  31.113  top5:   8.428
+	
+ * Best model 	31.11328125	8.427734375	
+=> Training epoch # 124	
+ * Finished epoch # 124     top1:  31.436  top5:   8.643
+	
+=> Training epoch # 125	
+ * Finished epoch # 125     top1:  30.820  top5:   8.369
+	
+ * Best model 	30.8203125	8.369140625	
+=> Training epoch # 126	
+ * Finished epoch # 126     top1:  31.025  top5:   8.691
+	
+=> Training epoch # 127	
+ * Finished epoch # 127     top1:  31.123  top5:   8.623
+	
+=> Training epoch # 128	
+ * Finished epoch # 128     top1:  31.289  top5:   8.311
+	
+=> Training epoch # 129	
+ * Finished epoch # 129     top1:  31.484  top5:   8.359
+	
+=> Training epoch # 130	
+ * Finished epoch # 130     top1:  30.957  top5:   8.506
+	
+=> Training epoch # 131	
+ * Finished epoch # 131     top1:  31.523  top5:   8.955
+	
+=> Training epoch # 132	
+ * Finished epoch # 132     top1:  30.635  top5:   8.691
+	
+ * Best model 	30.634765625	8.69140625	
+=> Training epoch # 133	
+ * Finished epoch # 133     top1:  30.879  top5:   8.740
+	
+=> Training epoch # 134	
+ * Finished epoch # 134     top1:  31.221  top5:   8.623
+	
+=> Training epoch # 135	
+ * Finished epoch # 135     top1:  31.943  top5:   8.496
+	
+=> Training epoch # 136	
+ * Finished epoch # 136     top1:  31.494  top5:   8.887
+	
+=> Training epoch # 137	
+ * Finished epoch # 137     top1:  31.992  top5:   9.033
+	
+=> Training epoch # 138	
+ * Finished epoch # 138     top1:  31.611  top5:   9.092
+	
+=> Training epoch # 139	
+ * Finished epoch # 139     top1:  31.689  top5:   9.004
+	
+=> Training epoch # 140	
+ * Finished epoch # 140     top1:  30.938  top5:   8.682
+	
+=> Training epoch # 141	
+ * Finished epoch # 141     top1:  31.172  top5:   8.457
+	
+=> Training epoch # 142	
+ * Finished epoch # 142     top1:  32.393  top5:   8.867
+	
+=> Training epoch # 143	
+ * Finished epoch # 143     top1:  31.934  top5:   8.877
+	
+=> Training epoch # 144	
+ * Finished epoch # 144     top1:  31.621  top5:   8.750
+	
+=> Training epoch # 145	
+ * Finished epoch # 145     top1:  31.572  top5:   8.750
+	
+=> Training epoch # 146	
+ * Finished epoch # 146     top1:  31.660  top5:   8.848
+	
+=> Training epoch # 147	
+ * Finished epoch # 147     top1:  31.729  top5:   8.936
+	
+=> Training epoch # 148	
+ * Finished epoch # 148     top1:  32.363  top5:   9.180
+	
+=> Training epoch # 149	
+ * Finished epoch # 149     top1:  31.807  top5:   8.740
+	
+=> Training epoch # 150	
+ * Finished epoch # 150     top1:  32.471  top5:   9.014
+	
+=> Training epoch # 151	
+ * Finished epoch # 151     top1:  31.201  top5:   8.721
+	
+=> Training epoch # 152	
+ * Finished epoch # 152     top1:  31.895  top5:   9.092
+	
+=> Training epoch # 153	
+ * Finished epoch # 153     top1:  31.943  top5:   9.072
+	
+=> Training epoch # 154	
+ * Finished epoch # 154     top1:  31.807  top5:   9.102
+	
+=> Training epoch # 155	
+ * Finished epoch # 155     top1:  32.168  top5:   9.375
+	
+=> Training epoch # 156	
+ * Finished epoch # 156     top1:  31.904  top5:   9.092
+	
+=> Training epoch # 157	
+ * Finished epoch # 157     top1:  32.422  top5:   9.160
+	
+=> Training epoch # 158	
+ * Finished epoch # 158     top1:  31.729  top5:   8.936
+	
+=> Training epoch # 159	
+ * Finished epoch # 159     top1:  31.455  top5:   8.643
+	
+=> Training epoch # 160	
+ * Finished epoch # 160     top1:  31.709  top5:   9.072
+	
+=> Training epoch # 161	
+ * Finished epoch # 161     top1:  31.709  top5:   8.730
+	
+=> Training epoch # 162	
+ * Finished epoch # 162     top1:  32.197  top5:   9.219
+	
+=> Training epoch # 163	
+ * Finished epoch # 163     top1:  32.344  top5:   9.121
+	
+=> Training epoch # 164	
+ * Finished epoch # 164     top1:  31.777  top5:   8.955
+	
+=> Training epoch # 165	
+ * Finished epoch # 165     top1:  32.363  top5:   9.229
+	
+=> Training epoch # 166	
+ * Finished epoch # 166     top1:  32.051  top5:   9.072
+	
+=> Training epoch # 167	
+ * Finished epoch # 167     top1:  32.041  top5:   8.975
+	
+=> Training epoch # 168	
+ * Finished epoch # 168     top1:  32.051  top5:   9.131
+	
+=> Training epoch # 169	
+ * Finished epoch # 169     top1:  32.021  top5:   9.062
+	
+=> Training epoch # 170	
+ * Finished epoch # 170     top1:  33.047  top5:   9.697
+	
+=> Training epoch # 171	
+ * Finished epoch # 171     top1:  31.885  top5:   8.975
+	
+=> Training epoch # 172	
+ * Finished epoch # 172     top1:  32.080  top5:   8.975
+	
+=> Training epoch # 173	
+ * Finished epoch # 173     top1:  32.510  top5:   9.014
+	
+=> Training epoch # 174	
+ * Finished epoch # 174     top1:  31.631  top5:   8.818
+	
+=> Training epoch # 175	
+ * Finished epoch # 175     top1:  32.822  top5:   9.541
+	
+=> Training epoch # 176	
+ * Finished epoch # 176     top1:  32.490  top5:   9.219
+	
+=> Training epoch # 177	
+ * Finished epoch # 177     top1:  32.578  top5:   9.160
+	
+=> Training epoch # 178	
+ * Finished epoch # 178     top1:  32.334  top5:   9.629
+	
+=> Training epoch # 179	
+ * Finished epoch # 179     top1:  32.227  top5:   9.248
+	
+=> Training epoch # 180	
+ * Finished epoch # 180     top1:  32.305  top5:   9.072
+	
+=> Training epoch # 181	
+ * Finished epoch # 181     top1:  32.295  top5:   9.160
+	
+=> Training epoch # 182	
+ * Finished epoch # 182     top1:  32.393  top5:   9.414
+	
+=> Training epoch # 183	
+ * Finished epoch # 183     top1:  31.924  top5:   9.014
+	
+=> Training epoch # 184	
+ * Finished epoch # 184     top1:  32.422  top5:   9.619
+	
+=> Training epoch # 185	
+ * Finished epoch # 185     top1:  32.451  top5:   8.730
+	
+=> Training epoch # 186	
+ * Finished epoch # 186     top1:  32.295  top5:   9.307
+	
+=> Training epoch # 187	
+ * Finished epoch # 187     top1:  32.891  top5:   9.023
+	
+=> Training epoch # 188	
+ * Finished epoch # 188     top1:  32.939  top5:   9.004
+	
+=> Training epoch # 189	
+ * Finished epoch # 189     top1:  32.666  top5:   9.463
+	
+=> Training epoch # 190	
+ * Finished epoch # 190     top1:  32.930  top5:   9.053
+	
+=> Training epoch # 191	
+ * Finished epoch # 191     top1:  32.686  top5:   9.473
+	
+=> Training epoch # 192	
+ * Finished epoch # 192     top1:  32.959  top5:  10.098
+	
+=> Training epoch # 193	
+ * Finished epoch # 193     top1:  33.203  top5:   9.297
+	
+=> Training epoch # 194	
+ * Finished epoch # 194     top1:  32.939  top5:   9.355
+	
+=> Training epoch # 195	
+ * Finished epoch # 195     top1:  32.236  top5:   8.994
+	
+=> Training epoch # 196	
+ * Finished epoch # 196     top1:  32.207  top5:   9.199
+	
+=> Training epoch # 197	
+ * Finished epoch # 197     top1:  33.086  top5:   9.395
+	
+=> Training epoch # 198	
+ * Finished epoch # 198     top1:  32.676  top5:   9.355
+	
+=> Training epoch # 199	
+ * Finished epoch # 199     top1:  32.510  top5:   9.404
+	
+=> Training epoch # 200	
+ * Finished epoch # 200     top1:  32.900  top5:   9.111
+	
+ * Finished top1: 30.635  top5:  8.691	

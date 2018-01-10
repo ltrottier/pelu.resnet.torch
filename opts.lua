@@ -86,6 +86,8 @@ function M.parse(arg)
       end
    end
 
+   print(opt)
+
    return opt
 end
 

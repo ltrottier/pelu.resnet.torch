@@ -19,7 +19,13 @@ require 'nn'
 require 'cunn'
 require 'cudnn'
 
-PELU = require './PELU/PELU_fast'
+require './PELU/ConstrainedDiv'
+require './PELU/ConstrainedMul'
+
+PELU = require './PELU/PELU_fast' -- div mul [default]
+PELU_div_div = require './PELU/PELU_div_div'
+PELU_mul_div = require './PELU/PELU_mul_div'
+PELU_mul_mul = require './PELU/PELU_mul_mul'
 
 local M = {}
 
@@ -109,7 +115,7 @@ function M.setup(opt, checkpoint)
 
       model = dpt:cuda()
    end
-
+   print(model)
    local criterion = nn.CrossEntropyCriterion():cuda()
    return model, criterion
 end

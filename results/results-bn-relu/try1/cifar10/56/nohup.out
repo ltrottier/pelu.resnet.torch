@@ -1,0 +1,1241 @@
+{
+  cudnn : "fastest"
+  LR : 0.1
+  nThreads : 2
+  nClasses : 0
+  batchSize : 256
+  testOnly : false
+  netType : "resnet-bn-relu"
+  resetClassifier : false
+  shortcutType : "A"
+  gen : "gen"
+  nGPU : 1
+  depth : 56
+  weightDecay : 0.001
+  data : ""
+  dataset : "cifar10"
+  epochNumber : 1
+  manualSeed : 2
+  resume : "results/results-bn-relu/try1/cifar10/56"
+  optimState : "none"
+  nEpochs : 200
+  tenCrop : false
+  shareGradInput : false
+  backend : "cudnn"
+  momentum : 0.9
+  retrain : "none"
+}
+=> Creating model from file: models/resnet-bn-relu.lua	
+ | ResNet-56 CIFAR-10	
+nn.Sequential {
+  [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> (7) -> (8) -> (9) -> output]
+  (1): cudnn.SpatialConvolution(3 -> 16, 3x3, 1,1, 1,1) without bias
+  (2): nn.Sequential {
+    [input -> (1) -> (2) -> output]
+    (1): nn.SpatialBatchNormalization (4D) (16)
+    (2): nn.ReLU
+  }
+  (3): nn.Sequential {
+    [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> (7) -> (8) -> (9) -> output]
+    (1): nn.Sequential {
+      [input -> (1) -> (2) -> output]
+      (1): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> output]
+          |      (1): cudnn.SpatialConvolution(16 -> 16, 3x3, 1,1, 1,1) without bias
+          |      (2): nn.Sequential {
+          |        [input -> (1) -> (2) -> output]
+          |        (1): nn.SpatialBatchNormalization (4D) (16)
+          |        (2): nn.ReLU
+          |      }
+          |      (3): cudnn.SpatialConvolution(16 -> 16, 3x3, 1,1, 1,1) without bias
+          |      (4): nn.SpatialBatchNormalization (4D) (16)
+          |    }
+           `-> (2): nn.Identity
+           ... -> output
+      }
+      (2): nn.CAddTable
+    }
+    (2): nn.Sequential {
+      [input -> (1) -> (2) -> output]
+      (1): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> output]
+          |      (1): cudnn.SpatialConvolution(16 -> 16, 3x3, 1,1, 1,1) without bias
+          |      (2): nn.Sequential {
+          |        [input -> (1) -> (2) -> output]
+          |        (1): nn.SpatialBatchNormalization (4D) (16)
+          |        (2): nn.ReLU
+          |      }
+          |      (3): cudnn.SpatialConvolution(16 -> 16, 3x3, 1,1, 1,1) without bias
+          |      (4): nn.SpatialBatchNormalization (4D) (16)
+          |    }
+           `-> (2): nn.Identity
+           ... -> output
+      }
+      (2): nn.CAddTable
+    }
+    (3): nn.Sequential {
+      [input -> (1) -> (2) -> output]
+      (1): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> output]
+          |      (1): cudnn.SpatialConvolution(16 -> 16, 3x3, 1,1, 1,1) without bias
+          |      (2): nn.Sequential {
+          |        [input -> (1) -> (2) -> output]
+          |        (1): nn.SpatialBatchNormalization (4D) (16)
+          |        (2): nn.ReLU
+          |      }
+          |      (3): cudnn.SpatialConvolution(16 -> 16, 3x3, 1,1, 1,1) without bias
+          |      (4): nn.SpatialBatchNormalization (4D) (16)
+          |    }
+           `-> (2): nn.Identity
+           ... -> output
+      }
+      (2): nn.CAddTable
+    }
+    (4): nn.Sequential {
+      [input -> (1) -> (2) -> output]
+      (1): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> output]
+          |      (1): cudnn.SpatialConvolution(16 -> 16, 3x3, 1,1, 1,1) without bias
+          |      (2): nn.Sequential {
+          |        [input -> (1) -> (2) -> output]
+          |        (1): nn.SpatialBatchNormalization (4D) (16)
+          |        (2): nn.ReLU
+          |      }
+          |      (3): cudnn.SpatialConvolution(16 -> 16, 3x3, 1,1, 1,1) without bias
+          |      (4): nn.SpatialBatchNormalization (4D) (16)
+          |    }
+           `-> (2): nn.Identity
+           ... -> output
+      }
+      (2): nn.CAddTable
+    }
+    (5): nn.Sequential {
+      [input -> (1) -> (2) -> output]
+      (1): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> output]
+          |      (1): cudnn.SpatialConvolution(16 -> 16, 3x3, 1,1, 1,1) without bias
+          |      (2): nn.Sequential {
+          |        [input -> (1) -> (2) -> output]
+          |        (1): nn.SpatialBatchNormalization (4D) (16)
+          |        (2): nn.ReLU
+          |      }
+          |      (3): cudnn.SpatialConvolution(16 -> 16, 3x3, 1,1, 1,1) without bias
+          |      (4): nn.SpatialBatchNormalization (4D) (16)
+          |    }
+           `-> (2): nn.Identity
+           ... -> output
+      }
+      (2): nn.CAddTable
+    }
+    (6): nn.Sequential {
+      [input -> (1) -> (2) -> output]
+      (1): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> output]
+          |      (1): cudnn.SpatialConvolution(16 -> 16, 3x3, 1,1, 1,1) without bias
+          |      (2): nn.Sequential {
+          |        [input -> (1) -> (2) -> output]
+          |        (1): nn.SpatialBatchNormalization (4D) (16)
+          |        (2): nn.ReLU
+          |      }
+          |      (3): cudnn.SpatialConvolution(16 -> 16, 3x3, 1,1, 1,1) without bias
+          |      (4): nn.SpatialBatchNormalization (4D) (16)
+          |    }
+           `-> (2): nn.Identity
+           ... -> output
+      }
+      (2): nn.CAddTable
+    }
+    (7): nn.Sequential {
+      [input -> (1) -> (2) -> output]
+      (1): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> output]
+          |      (1): cudnn.SpatialConvolution(16 -> 16, 3x3, 1,1, 1,1) without bias
+          |      (2): nn.Sequential {
+          |        [input -> (1) -> (2) -> output]
+          |        (1): nn.SpatialBatchNormalization (4D) (16)
+          |        (2): nn.ReLU
+          |      }
+          |      (3): cudnn.SpatialConvolution(16 -> 16, 3x3, 1,1, 1,1) without bias
+          |      (4): nn.SpatialBatchNormalization (4D) (16)
+          |    }
+           `-> (2): nn.Identity
+           ... -> output
+      }
+      (2): nn.CAddTable
+    }
+    (8): nn.Sequential {
+      [input -> (1) -> (2) -> output]
+      (1): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> output]
+          |      (1): cudnn.SpatialConvolution(16 -> 16, 3x3, 1,1, 1,1) without bias
+          |      (2): nn.Sequential {
+          |        [input -> (1) -> (2) -> output]
+          |        (1): nn.SpatialBatchNormalization (4D) (16)
+          |        (2): nn.ReLU
+          |      }
+          |      (3): cudnn.SpatialConvolution(16 -> 16, 3x3, 1,1, 1,1) without bias
+          |      (4): nn.SpatialBatchNormalization (4D) (16)
+          |    }
+           `-> (2): nn.Identity
+           ... -> output
+      }
+      (2): nn.CAddTable
+    }
+    (9): nn.Sequential {
+      [input -> (1) -> (2) -> output]
+      (1): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> output]
+          |      (1): cudnn.SpatialConvolution(16 -> 16, 3x3, 1,1, 1,1) without bias
+          |      (2): nn.Sequential {
+          |        [input -> (1) -> (2) -> output]
+          |        (1): nn.SpatialBatchNormalization (4D) (16)
+          |        (2): nn.ReLU
+          |      }
+          |      (3): cudnn.SpatialConvolution(16 -> 16, 3x3, 1,1, 1,1) without bias
+          |      (4): nn.SpatialBatchNormalization (4D) (16)
+          |    }
+           `-> (2): nn.Identity
+           ... -> output
+      }
+      (2): nn.CAddTable
+    }
+  }
+  (4): nn.Sequential {
+    [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> (7) -> (8) -> (9) -> output]
+    (1): nn.Sequential {
+      [input -> (1) -> (2) -> output]
+      (1): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> output]
+          |      (1): cudnn.SpatialConvolution(16 -> 32, 3x3, 2,2, 1,1) without bias
+          |      (2): nn.Sequential {
+          |        [input -> (1) -> (2) -> output]
+          |        (1): nn.SpatialBatchNormalization (4D) (32)
+          |        (2): nn.ReLU
+          |      }
+          |      (3): cudnn.SpatialConvolution(32 -> 32, 3x3, 1,1, 1,1) without bias
+          |      (4): nn.SpatialBatchNormalization (4D) (32)
+          |    }
+           `-> (2): nn.Sequential {
+                 [input -> (1) -> (2) -> output]
+                 (1): nn.SpatialAveragePooling(1x1, 2,2)
+                 (2): nn.Concat {
+                   input
+                     |`-> (1): nn.Identity
+                      `-> (2): nn.MulConstant
+                      ... -> output
+                 }
+               }
+           ... -> output
+      }
+      (2): nn.CAddTable
+    }
+    (2): nn.Sequential {
+      [input -> (1) -> (2) -> output]
+      (1): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> output]
+          |      (1): cudnn.SpatialConvolution(32 -> 32, 3x3, 1,1, 1,1) without bias
+          |      (2): nn.Sequential {
+          |        [input -> (1) -> (2) -> output]
+          |        (1): nn.SpatialBatchNormalization (4D) (32)
+          |        (2): nn.ReLU
+          |      }
+          |      (3): cudnn.SpatialConvolution(32 -> 32, 3x3, 1,1, 1,1) without bias
+          |      (4): nn.SpatialBatchNormalization (4D) (32)
+          |    }
+           `-> (2): nn.Identity
+           ... -> output
+      }
+      (2): nn.CAddTable
+    }
+    (3): nn.Sequential {
+      [input -> (1) -> (2) -> output]
+      (1): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> output]
+          |      (1): cudnn.SpatialConvolution(32 -> 32, 3x3, 1,1, 1,1) without bias
+          |      (2): nn.Sequential {
+          |        [input -> (1) -> (2) -> output]
+          |        (1): nn.SpatialBatchNormalization (4D) (32)
+          |        (2): nn.ReLU
+          |      }
+          |      (3): cudnn.SpatialConvolution(32 -> 32, 3x3, 1,1, 1,1) without bias
+          |      (4): nn.SpatialBatchNormalization (4D) (32)
+          |    }
+           `-> (2): nn.Identity
+           ... -> output
+      }
+      (2): nn.CAddTable
+    }
+    (4): nn.Sequential {
+      [input -> (1) -> (2) -> output]
+      (1): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> output]
+          |      (1): cudnn.SpatialConvolution(32 -> 32, 3x3, 1,1, 1,1) without bias
+          |      (2): nn.Sequential {
+          |        [input -> (1) -> (2) -> output]
+          |        (1): nn.SpatialBatchNormalization (4D) (32)
+          |        (2): nn.ReLU
+          |      }
+          |      (3): cudnn.SpatialConvolution(32 -> 32, 3x3, 1,1, 1,1) without bias
+          |      (4): nn.SpatialBatchNormalization (4D) (32)
+          |    }
+           `-> (2): nn.Identity
+           ... -> output
+      }
+      (2): nn.CAddTable
+    }
+    (5): nn.Sequential {
+      [input -> (1) -> (2) -> output]
+      (1): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> output]
+          |      (1): cudnn.SpatialConvolution(32 -> 32, 3x3, 1,1, 1,1) without bias
+          |      (2): nn.Sequential {
+          |        [input -> (1) -> (2) -> output]
+          |        (1): nn.SpatialBatchNormalization (4D) (32)
+          |        (2): nn.ReLU
+          |      }
+          |      (3): cudnn.SpatialConvolution(32 -> 32, 3x3, 1,1, 1,1) without bias
+          |      (4): nn.SpatialBatchNormalization (4D) (32)
+          |    }
+           `-> (2): nn.Identity
+           ... -> output
+      }
+      (2): nn.CAddTable
+    }
+    (6): nn.Sequential {
+      [input -> (1) -> (2) -> output]
+      (1): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> output]
+          |      (1): cudnn.SpatialConvolution(32 -> 32, 3x3, 1,1, 1,1) without bias
+          |      (2): nn.Sequential {
+          |        [input -> (1) -> (2) -> output]
+          |        (1): nn.SpatialBatchNormalization (4D) (32)
+          |        (2): nn.ReLU
+          |      }
+          |      (3): cudnn.SpatialConvolution(32 -> 32, 3x3, 1,1, 1,1) without bias
+          |      (4): nn.SpatialBatchNormalization (4D) (32)
+          |    }
+           `-> (2): nn.Identity
+           ... -> output
+      }
+      (2): nn.CAddTable
+    }
+    (7): nn.Sequential {
+      [input -> (1) -> (2) -> output]
+      (1): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> output]
+          |      (1): cudnn.SpatialConvolution(32 -> 32, 3x3, 1,1, 1,1) without bias
+          |      (2): nn.Sequential {
+          |        [input -> (1) -> (2) -> output]
+          |        (1): nn.SpatialBatchNormalization (4D) (32)
+          |        (2): nn.ReLU
+          |      }
+          |      (3): cudnn.SpatialConvolution(32 -> 32, 3x3, 1,1, 1,1) without bias
+          |      (4): nn.SpatialBatchNormalization (4D) (32)
+          |    }
+           `-> (2): nn.Identity
+           ... -> output
+      }
+      (2): nn.CAddTable
+    }
+    (8): nn.Sequential {
+      [input -> (1) -> (2) -> output]
+      (1): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> output]
+          |      (1): cudnn.SpatialConvolution(32 -> 32, 3x3, 1,1, 1,1) without bias
+          |      (2): nn.Sequential {
+          |        [input -> (1) -> (2) -> output]
+          |        (1): nn.SpatialBatchNormalization (4D) (32)
+          |        (2): nn.ReLU
+          |      }
+          |      (3): cudnn.SpatialConvolution(32 -> 32, 3x3, 1,1, 1,1) without bias
+          |      (4): nn.SpatialBatchNormalization (4D) (32)
+          |    }
+           `-> (2): nn.Identity
+           ... -> output
+      }
+      (2): nn.CAddTable
+    }
+    (9): nn.Sequential {
+      [input -> (1) -> (2) -> output]
+      (1): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> output]
+          |      (1): cudnn.SpatialConvolution(32 -> 32, 3x3, 1,1, 1,1) without bias
+          |      (2): nn.Sequential {
+          |        [input -> (1) -> (2) -> output]
+          |        (1): nn.SpatialBatchNormalization (4D) (32)
+          |        (2): nn.ReLU
+          |      }
+          |      (3): cudnn.SpatialConvolution(32 -> 32, 3x3, 1,1, 1,1) without bias
+          |      (4): nn.SpatialBatchNormalization (4D) (32)
+          |    }
+           `-> (2): nn.Identity
+           ... -> output
+      }
+      (2): nn.CAddTable
+    }
+  }
+  (5): nn.Sequential {
+    [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> (7) -> (8) -> (9) -> output]
+    (1): nn.Sequential {
+      [input -> (1) -> (2) -> output]
+      (1): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> output]
+          |      (1): cudnn.SpatialConvolution(32 -> 64, 3x3, 2,2, 1,1) without bias
+          |      (2): nn.Sequential {
+          |        [input -> (1) -> (2) -> output]
+          |        (1): nn.SpatialBatchNormalization (4D) (64)
+          |        (2): nn.ReLU
+          |      }
+          |      (3): cudnn.SpatialConvolution(64 -> 64, 3x3, 1,1, 1,1) without bias
+          |      (4): nn.SpatialBatchNormalization (4D) (64)
+          |    }
+           `-> (2): nn.Sequential {
+                 [input -> (1) -> (2) -> output]
+                 (1): nn.SpatialAveragePooling(1x1, 2,2)
+                 (2): nn.Concat {
+                   input
+                     |`-> (1): nn.Identity
+                      `-> (2): nn.MulConstant
+                      ... -> output
+                 }
+               }
+           ... -> output
+      }
+      (2): nn.CAddTable
+    }
+    (2): nn.Sequential {
+      [input -> (1) -> (2) -> output]
+      (1): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> output]
+          |      (1): cudnn.SpatialConvolution(64 -> 64, 3x3, 1,1, 1,1) without bias
+          |      (2): nn.Sequential {
+          |        [input -> (1) -> (2) -> output]
+          |        (1): nn.SpatialBatchNormalization (4D) (64)
+          |        (2): nn.ReLU
+          |      }
+          |      (3): cudnn.SpatialConvolution(64 -> 64, 3x3, 1,1, 1,1) without bias
+          |      (4): nn.SpatialBatchNormalization (4D) (64)
+          |    }
+           `-> (2): nn.Identity
+           ... -> output
+      }
+      (2): nn.CAddTable
+    }
+    (3): nn.Sequential {
+      [input -> (1) -> (2) -> output]
+      (1): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> output]
+          |      (1): cudnn.SpatialConvolution(64 -> 64, 3x3, 1,1, 1,1) without bias
+          |      (2): nn.Sequential {
+          |        [input -> (1) -> (2) -> output]
+          |        (1): nn.SpatialBatchNormalization (4D) (64)
+          |        (2): nn.ReLU
+          |      }
+          |      (3): cudnn.SpatialConvolution(64 -> 64, 3x3, 1,1, 1,1) without bias
+          |      (4): nn.SpatialBatchNormalization (4D) (64)
+          |    }
+           `-> (2): nn.Identity
+           ... -> output
+      }
+      (2): nn.CAddTable
+    }
+    (4): nn.Sequential {
+      [input -> (1) -> (2) -> output]
+      (1): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> output]
+          |      (1): cudnn.SpatialConvolution(64 -> 64, 3x3, 1,1, 1,1) without bias
+          |      (2): nn.Sequential {
+          |        [input -> (1) -> (2) -> output]
+          |        (1): nn.SpatialBatchNormalization (4D) (64)
+          |        (2): nn.ReLU
+          |      }
+          |      (3): cudnn.SpatialConvolution(64 -> 64, 3x3, 1,1, 1,1) without bias
+          |      (4): nn.SpatialBatchNormalization (4D) (64)
+          |    }
+           `-> (2): nn.Identity
+           ... -> output
+      }
+      (2): nn.CAddTable
+    }
+    (5): nn.Sequential {
+      [input -> (1) -> (2) -> output]
+      (1): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> output]
+          |      (1): cudnn.SpatialConvolution(64 -> 64, 3x3, 1,1, 1,1) without bias
+          |      (2): nn.Sequential {
+          |        [input -> (1) -> (2) -> output]
+          |        (1): nn.SpatialBatchNormalization (4D) (64)
+          |        (2): nn.ReLU
+          |      }
+          |      (3): cudnn.SpatialConvolution(64 -> 64, 3x3, 1,1, 1,1) without bias
+          |      (4): nn.SpatialBatchNormalization (4D) (64)
+          |    }
+           `-> (2): nn.Identity
+           ... -> output
+      }
+      (2): nn.CAddTable
+    }
+    (6): nn.Sequential {
+      [input -> (1) -> (2) -> output]
+      (1): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> output]
+          |      (1): cudnn.SpatialConvolution(64 -> 64, 3x3, 1,1, 1,1) without bias
+          |      (2): nn.Sequential {
+          |        [input -> (1) -> (2) -> output]
+          |        (1): nn.SpatialBatchNormalization (4D) (64)
+          |        (2): nn.ReLU
+          |      }
+          |      (3): cudnn.SpatialConvolution(64 -> 64, 3x3, 1,1, 1,1) without bias
+          |      (4): nn.SpatialBatchNormalization (4D) (64)
+          |    }
+           `-> (2): nn.Identity
+           ... -> output
+      }
+      (2): nn.CAddTable
+    }
+    (7): nn.Sequential {
+      [input -> (1) -> (2) -> output]
+      (1): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> output]
+          |      (1): cudnn.SpatialConvolution(64 -> 64, 3x3, 1,1, 1,1) without bias
+          |      (2): nn.Sequential {
+          |        [input -> (1) -> (2) -> output]
+          |        (1): nn.SpatialBatchNormalization (4D) (64)
+          |        (2): nn.ReLU
+          |      }
+          |      (3): cudnn.SpatialConvolution(64 -> 64, 3x3, 1,1, 1,1) without bias
+          |      (4): nn.SpatialBatchNormalization (4D) (64)
+          |    }
+           `-> (2): nn.Identity
+           ... -> output
+      }
+      (2): nn.CAddTable
+    }
+    (8): nn.Sequential {
+      [input -> (1) -> (2) -> output]
+      (1): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> output]
+          |      (1): cudnn.SpatialConvolution(64 -> 64, 3x3, 1,1, 1,1) without bias
+          |      (2): nn.Sequential {
+          |        [input -> (1) -> (2) -> output]
+          |        (1): nn.SpatialBatchNormalization (4D) (64)
+          |        (2): nn.ReLU
+          |      }
+          |      (3): cudnn.SpatialConvolution(64 -> 64, 3x3, 1,1, 1,1) without bias
+          |      (4): nn.SpatialBatchNormalization (4D) (64)
+          |    }
+           `-> (2): nn.Identity
+           ... -> output
+      }
+      (2): nn.CAddTable
+    }
+    (9): nn.Sequential {
+      [input -> (1) -> (2) -> output]
+      (1): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> output]
+          |      (1): cudnn.SpatialConvolution(64 -> 64, 3x3, 1,1, 1,1) without bias
+          |      (2): nn.Sequential {
+          |        [input -> (1) -> (2) -> output]
+          |        (1): nn.SpatialBatchNormalization (4D) (64)
+          |        (2): nn.ReLU
+          |      }
+          |      (3): cudnn.SpatialConvolution(64 -> 64, 3x3, 1,1, 1,1) without bias
+          |      (4): nn.SpatialBatchNormalization (4D) (64)
+          |    }
+           `-> (2): nn.Identity
+           ... -> output
+      }
+      (2): nn.CAddTable
+    }
+  }
+  (6): nn.Sequential {
+    [input -> (1) -> (2) -> output]
+    (1): nn.SpatialBatchNormalization (4D) (64)
+    (2): nn.ReLU
+  }
+  (7): cudnn.SpatialAveragePooling(8x8, 1,1)
+  (8): nn.View(64)
+  (9): nn.Linear(64 -> 10)
+}
+=> Training epoch # 1	
+ * Finished epoch # 1     top1:  54.541  top5:   7.871
+	
+ * Best model 	54.541015625	7.87109375	
+=> Training epoch # 2	
+ * Finished epoch # 2     top1:  53.145  top5:   6.055
+	
+ * Best model 	53.14453125	6.0546875	
+=> Training epoch # 3	
+ * Finished epoch # 3     top1:  38.896  top5:   3.193
+	
+ * Best model 	38.896484375	3.193359375	
+=> Training epoch # 4	
+ * Finished epoch # 4     top1:  31.641  top5:   2.275
+	
+ * Best model 	31.640625	2.275390625	
+=> Training epoch # 5	
+ * Finished epoch # 5     top1:  26.084  top5:   1.689
+	
+ * Best model 	26.083984375	1.689453125	
+=> Training epoch # 6	
+ * Finished epoch # 6     top1:  28.906  top5:   1.777
+	
+=> Training epoch # 7	
+ * Finished epoch # 7     top1:  25.352  top5:   1.924
+	
+ * Best model 	25.3515625	1.923828125	
+=> Training epoch # 8	
+ * Finished epoch # 8     top1:  26.143  top5:   2.432
+	
+=> Training epoch # 9	
+ * Finished epoch # 9     top1:  34.033  top5:   4.258
+	
+=> Training epoch # 10	
+ * Finished epoch # 10     top1:  28.301  top5:   2.207
+	
+=> Training epoch # 11	
+ * Finished epoch # 11     top1:  26.748  top5:   2.676
+	
+=> Training epoch # 12	
+ * Finished epoch # 12     top1:  25.986  top5:   1.250
+	
+=> Training epoch # 13	
+ * Finished epoch # 13     top1:  29.561  top5:   1.875
+	
+=> Training epoch # 14	
+ * Finished epoch # 14     top1:  25.312  top5:   1.650
+	
+ * Best model 	25.3125	1.650390625	
+=> Training epoch # 15	
+ * Finished epoch # 15     top1:  24.609  top5:   1.240
+	
+ * Best model 	24.609375	1.240234375	
+=> Training epoch # 16	
+ * Finished epoch # 16     top1:  20.020  top5:   0.898
+	
+ * Best model 	20.01953125	0.8984375	
+=> Training epoch # 17	
+ * Finished epoch # 17     top1:  21.260  top5:   1.748
+	
+=> Training epoch # 18	
+ * Finished epoch # 18     top1:  23.027  top5:   1.982
+	
+=> Training epoch # 19	
+ * Finished epoch # 19     top1:  24.102  top5:   1.631
+	
+=> Training epoch # 20	
+ * Finished epoch # 20     top1:  23.643  top5:   0.859
+	
+=> Training epoch # 21	
+ * Finished epoch # 21     top1:  22.031  top5:   1.221
+	
+=> Training epoch # 22	
+ * Finished epoch # 22     top1:  27.637  top5:   0.908
+	
+=> Training epoch # 23	
+ * Finished epoch # 23     top1:  18.184  top5:   1.230
+	
+ * Best model 	18.18359375	1.23046875	
+=> Training epoch # 24	
+ * Finished epoch # 24     top1:  19.492  top5:   0.820
+	
+=> Training epoch # 25	
+ * Finished epoch # 25     top1:  22.734  top5:   1.172
+	
+=> Training epoch # 26	
+ * Finished epoch # 26     top1:  25.098  top5:   1.377
+	
+=> Training epoch # 27	
+ * Finished epoch # 27     top1:  22.451  top5:   0.957
+	
+=> Training epoch # 28	
+ * Finished epoch # 28     top1:  23.115  top5:   1.631
+	
+=> Training epoch # 29	
+ * Finished epoch # 29     top1:  18.975  top5:   1.162
+	
+=> Training epoch # 30	
+ * Finished epoch # 30     top1:  20.762  top5:   1.455
+	
+=> Training epoch # 31	
+ * Finished epoch # 31     top1:  26.045  top5:   2.178
+	
+=> Training epoch # 32	
+ * Finished epoch # 32     top1:  21.924  top5:   1.260
+	
+=> Training epoch # 33	
+ * Finished epoch # 33     top1:  19.873  top5:   1.553
+	
+=> Training epoch # 34	
+ * Finished epoch # 34     top1:  27.061  top5:   2.969
+	
+=> Training epoch # 35	
+ * Finished epoch # 35     top1:  20.000  top5:   0.596
+	
+=> Training epoch # 36	
+ * Finished epoch # 36     top1:  24.062  top5:   1.592
+	
+=> Training epoch # 37	
+ * Finished epoch # 37     top1:  17.256  top5:   0.996
+	
+ * Best model 	17.255859375	0.99609375	
+=> Training epoch # 38	
+ * Finished epoch # 38     top1:  32.441  top5:   1.104
+	
+=> Training epoch # 39	
+ * Finished epoch # 39     top1:  22.793  top5:   1.143
+	
+=> Training epoch # 40	
+ * Finished epoch # 40     top1:  30.068  top5:   1.846
+	
+=> Training epoch # 41	
+ * Finished epoch # 41     top1:  23.867  top5:   1.553
+	
+=> Training epoch # 42	
+ * Finished epoch # 42     top1:  28.652  top5:   2.734
+	
+=> Training epoch # 43	
+ * Finished epoch # 43     top1:  27.861  top5:   1.348
+	
+=> Training epoch # 44	
+ * Finished epoch # 44     top1:  21.162  top5:   1.338
+	
+=> Training epoch # 45	
+ * Finished epoch # 45     top1:  18.418  top5:   0.938
+	
+=> Training epoch # 46	
+ * Finished epoch # 46     top1:  21.289  top5:   1.123
+	
+=> Training epoch # 47	
+ * Finished epoch # 47     top1:  20.967  top5:   1.006
+	
+=> Training epoch # 48	
+ * Finished epoch # 48     top1:  23.467  top5:   1.426
+	
+=> Training epoch # 49	
+ * Finished epoch # 49     top1:  19.180  top5:   0.723
+	
+=> Training epoch # 50	
+ * Finished epoch # 50     top1:  24.629  top5:   1.055
+	
+=> Training epoch # 51	
+ * Finished epoch # 51     top1:  23.203  top5:   1.885
+	
+=> Training epoch # 52	
+ * Finished epoch # 52     top1:  25.693  top5:   1.484
+	
+=> Training epoch # 53	
+ * Finished epoch # 53     top1:  21.289  top5:   1.299
+	
+=> Training epoch # 54	
+ * Finished epoch # 54     top1:  20.068  top5:   1.211
+	
+=> Training epoch # 55	
+ * Finished epoch # 55     top1:  18.555  top5:   0.693
+	
+=> Training epoch # 56	
+ * Finished epoch # 56     top1:  20.361  top5:   1.152
+	
+=> Training epoch # 57	
+ * Finished epoch # 57     top1:  30.361  top5:   2.334
+	
+=> Training epoch # 58	
+ * Finished epoch # 58     top1:  17.285  top5:   1.221
+	
+=> Training epoch # 59	
+ * Finished epoch # 59     top1:  19.502  top5:   1.064
+	
+=> Training epoch # 60	
+ * Finished epoch # 60     top1:  19.482  top5:   0.967
+	
+=> Training epoch # 61	
+ * Finished epoch # 61     top1:  17.373  top5:   0.684
+	
+=> Training epoch # 62	
+ * Finished epoch # 62     top1:  18.838  top5:   1.084
+	
+=> Training epoch # 63	
+ * Finished epoch # 63     top1:  18.760  top5:   1.270
+	
+=> Training epoch # 64	
+ * Finished epoch # 64     top1:  17.393  top5:   0.801
+	
+=> Training epoch # 65	
+ * Finished epoch # 65     top1:  17.607  top5:   1.299
+	
+=> Training epoch # 66	
+ * Finished epoch # 66     top1:  22.959  top5:   1.738
+	
+=> Training epoch # 67	
+ * Finished epoch # 67     top1:  22.178  top5:   1.201
+	
+=> Training epoch # 68	
+ * Finished epoch # 68     top1:  18.877  top5:   1.035
+	
+=> Training epoch # 69	
+ * Finished epoch # 69     top1:  22.422  top5:   0.928
+	
+=> Training epoch # 70	
+ * Finished epoch # 70     top1:  18.027  top5:   0.752
+	
+=> Training epoch # 71	
+ * Finished epoch # 71     top1:  26.104  top5:   2.207
+	
+=> Training epoch # 72	
+ * Finished epoch # 72     top1:  23.262  top5:   1.445
+	
+=> Training epoch # 73	
+ * Finished epoch # 73     top1:  20.303  top5:   0.742
+	
+=> Training epoch # 74	
+ * Finished epoch # 74     top1:  16.719  top5:   0.635
+	
+ * Best model 	16.71875	0.634765625	
+=> Training epoch # 75	
+ * Finished epoch # 75     top1:  23.506  top5:   1.514
+	
+=> Training epoch # 76	
+ * Finished epoch # 76     top1:  19.834  top5:   1.045
+	
+=> Training epoch # 77	
+ * Finished epoch # 77     top1:  18.887  top5:   1.074
+	
+=> Training epoch # 78	
+ * Finished epoch # 78     top1:  17.197  top5:   0.664
+	
+=> Training epoch # 79	
+ * Finished epoch # 79     top1:  26.016  top5:   1.162
+	
+=> Training epoch # 80	
+ * Finished epoch # 80     top1:  18.721  top5:   0.869
+	
+=> Training epoch # 81	
+ * Finished epoch # 81     top1:   8.457  top5:   0.156
+	
+ * Best model 	8.45703125	0.15625	
+=> Training epoch # 82	
+ * Finished epoch # 82     top1:   7.861  top5:   0.195
+	
+ * Best model 	7.861328125	0.1953125	
+=> Training epoch # 83	
+ * Finished epoch # 83     top1:   7.979  top5:   0.166
+	
+=> Training epoch # 84	
+ * Finished epoch # 84     top1:   7.646  top5:   0.156
+	
+ * Best model 	7.646484375	0.15625	
+=> Training epoch # 85	
+ * Finished epoch # 85     top1:   7.627  top5:   0.176
+	
+ * Best model 	7.626953125	0.17578125	
+=> Training epoch # 86	
+ * Finished epoch # 86     top1:   7.598  top5:   0.205
+	
+ * Best model 	7.59765625	0.205078125	
+=> Training epoch # 87	
+ * Finished epoch # 87     top1:   7.627  top5:   0.137
+	
+=> Training epoch # 88	
+ * Finished epoch # 88     top1:   7.598  top5:   0.156
+	
+=> Training epoch # 89	
+ * Finished epoch # 89     top1:   7.871  top5:   0.166
+	
+=> Training epoch # 90	
+ * Finished epoch # 90     top1:   7.510  top5:   0.176
+	
+ * Best model 	7.509765625	0.17578125	
+=> Training epoch # 91	
+ * Finished epoch # 91     top1:   7.881  top5:   0.166
+	
+=> Training epoch # 92	
+ * Finished epoch # 92     top1:   7.812  top5:   0.146
+	
+=> Training epoch # 93	
+ * Finished epoch # 93     top1:   7.764  top5:   0.195
+	
+=> Training epoch # 94	
+ * Finished epoch # 94     top1:   7.725  top5:   0.127
+	
+=> Training epoch # 95	
+ * Finished epoch # 95     top1:   8.564  top5:   0.186
+	
+=> Training epoch # 96	
+ * Finished epoch # 96     top1:   8.057  top5:   0.186
+	
+=> Training epoch # 97	
+ * Finished epoch # 97     top1:   8.066  top5:   0.195
+	
+=> Training epoch # 98	
+ * Finished epoch # 98     top1:   8.564  top5:   0.225
+	
+=> Training epoch # 99	
+ * Finished epoch # 99     top1:   8.164  top5:   0.381
+	
+=> Training epoch # 100	
+ * Finished epoch # 100     top1:   8.594  top5:   0.303
+	
+=> Training epoch # 101	
+ * Finished epoch # 101     top1:   8.613  top5:   0.273
+	
+=> Training epoch # 102	
+ * Finished epoch # 102     top1:   9.062  top5:   0.303
+	
+=> Training epoch # 103	
+ * Finished epoch # 103     top1:   8.711  top5:   0.322
+	
+=> Training epoch # 104	
+ * Finished epoch # 104     top1:   8.350  top5:   0.195
+	
+=> Training epoch # 105	
+ * Finished epoch # 105     top1:   8.789  top5:   0.312
+	
+=> Training epoch # 106	
+ * Finished epoch # 106     top1:   8.779  top5:   0.205
+	
+=> Training epoch # 107	
+ * Finished epoch # 107     top1:   8.955  top5:   0.293
+	
+=> Training epoch # 108	
+ * Finished epoch # 108     top1:   8.799  top5:   0.215
+	
+=> Training epoch # 109	
+ * Finished epoch # 109     top1:   8.887  top5:   0.234
+	
+=> Training epoch # 110	
+ * Finished epoch # 110     top1:   9.912  top5:   0.273
+	
+=> Training epoch # 111	
+ * Finished epoch # 111     top1:   9.268  top5:   0.312
+	
+=> Training epoch # 112	
+ * Finished epoch # 112     top1:   9.609  top5:   0.283
+	
+=> Training epoch # 113	
+ * Finished epoch # 113     top1:   8.828  top5:   0.312
+	
+=> Training epoch # 114	
+ * Finished epoch # 114     top1:   9.805  top5:   0.303
+	
+=> Training epoch # 115	
+ * Finished epoch # 115     top1:   8.281  top5:   0.312
+	
+=> Training epoch # 116	
+ * Finished epoch # 116     top1:   9.678  top5:   0.283
+	
+=> Training epoch # 117	
+ * Finished epoch # 117     top1:   8.877  top5:   0.293
+	
+=> Training epoch # 118	
+ * Finished epoch # 118     top1:   8.838  top5:   0.312
+	
+=> Training epoch # 119	
+ * Finished epoch # 119     top1:   8.838  top5:   0.254
+	
+=> Training epoch # 120	
+ * Finished epoch # 120     top1:   9.395  top5:   0.479
+	
+=> Training epoch # 121	
+ * Finished epoch # 121     top1:   8.750  top5:   0.283
+	
+=> Training epoch # 122	
+ * Finished epoch # 122     top1:   6.621  top5:   0.186
+	
+ * Best model 	6.62109375	0.185546875	
+=> Training epoch # 123	
+ * Finished epoch # 123     top1:   6.631  top5:   0.156
+	
+=> Training epoch # 124	
+ * Finished epoch # 124     top1:   6.377  top5:   0.176
+	
+ * Best model 	6.376953125	0.17578125	
+=> Training epoch # 125	
+ * Finished epoch # 125     top1:   6.455  top5:   0.195
+	
+=> Training epoch # 126	
+ * Finished epoch # 126     top1:   6.221  top5:   0.166
+	
+ * Best model 	6.220703125	0.166015625	
+=> Training epoch # 127	
+ * Finished epoch # 127     top1:   6.426  top5:   0.195
+	
+=> Training epoch # 128	
+ * Finished epoch # 128     top1:   6.279  top5:   0.195
+	
+=> Training epoch # 129	
+ * Finished epoch # 129     top1:   6.338  top5:   0.176
+	
+=> Training epoch # 130	
+ * Finished epoch # 130     top1:   6.250  top5:   0.176
+	
+=> Training epoch # 131	
+ * Finished epoch # 131     top1:   6.377  top5:   0.146
+	
+=> Training epoch # 132	
+ * Finished epoch # 132     top1:   6.338  top5:   0.176
+	
+=> Training epoch # 133	
+ * Finished epoch # 133     top1:   6.543  top5:   0.186
+	
+=> Training epoch # 134	
+ * Finished epoch # 134     top1:   6.162  top5:   0.186
+	
+ * Best model 	6.162109375	0.185546875	
+=> Training epoch # 135	
+ * Finished epoch # 135     top1:   6.709  top5:   0.195
+	
+=> Training epoch # 136	
+ * Finished epoch # 136     top1:   6.133  top5:   0.205
+	
+ * Best model 	6.1328125	0.205078125	
+=> Training epoch # 137	
+ * Finished epoch # 137     top1:   6.074  top5:   0.195
+	
+ * Best model 	6.07421875	0.1953125	
+=> Training epoch # 138	
+ * Finished epoch # 138     top1:   6.338  top5:   0.176
+	
+=> Training epoch # 139	
+ * Finished epoch # 139     top1:   6.299  top5:   0.195
+	
+=> Training epoch # 140	
+ * Finished epoch # 140     top1:   6.533  top5:   0.332
+	
+=> Training epoch # 141	
+ * Finished epoch # 141     top1:   6.406  top5:   0.195
+	
+=> Training epoch # 142	
+ * Finished epoch # 142     top1:   6.318  top5:   0.205
+	
+=> Training epoch # 143	
+ * Finished epoch # 143     top1:   6.270  top5:   0.186
+	
+=> Training epoch # 144	
+ * Finished epoch # 144     top1:   6.162  top5:   0.195
+	
+=> Training epoch # 145	
+ * Finished epoch # 145     top1:   6.279  top5:   0.176
+	
+=> Training epoch # 146	
+ * Finished epoch # 146     top1:   6.455  top5:   0.352
+	
+=> Training epoch # 147	
+ * Finished epoch # 147     top1:   6.172  top5:   0.195
+	
+=> Training epoch # 148	
+ * Finished epoch # 148     top1:   6.162  top5:   0.195
+	
+=> Training epoch # 149	
+ * Finished epoch # 149     top1:   6.465  top5:   0.205
+	
+=> Training epoch # 150	
+ * Finished epoch # 150     top1:   6.387  top5:   0.195
+	
+=> Training epoch # 151	
+ * Finished epoch # 151     top1:   6.279  top5:   0.352
+	
+=> Training epoch # 152	
+ * Finished epoch # 152     top1:   6.328  top5:   0.195
+	
+=> Training epoch # 153	
+ * Finished epoch # 153     top1:   6.328  top5:   0.215
+	
+=> Training epoch # 154	
+ * Finished epoch # 154     top1:   6.523  top5:   0.195
+	
+=> Training epoch # 155	
+ * Finished epoch # 155     top1:   6.318  top5:   0.215
+	
+=> Training epoch # 156	
+ * Finished epoch # 156     top1:   6.338  top5:   0.205
+	
+=> Training epoch # 157	
+ * Finished epoch # 157     top1:   6.191  top5:   0.186
+	
+=> Training epoch # 158	
+ * Finished epoch # 158     top1:   6.133  top5:   0.186
+	
+=> Training epoch # 159	
+ * Finished epoch # 159     top1:   6.523  top5:   0.186
+	
+=> Training epoch # 160	
+ * Finished epoch # 160     top1:   6.123  top5:   0.205
+	
+=> Training epoch # 161	
+ * Finished epoch # 161     top1:   6.094  top5:   0.205
+	
+=> Training epoch # 162	
+ * Finished epoch # 162     top1:   6.270  top5:   0.234
+	
+=> Training epoch # 163	
+ * Finished epoch # 163     top1:   6.104  top5:   0.215
+	
+=> Training epoch # 164	
+ * Finished epoch # 164     top1:   6.318  top5:   0.186
+	
+=> Training epoch # 165	
+ * Finished epoch # 165     top1:   6.133  top5:   0.205
+	
+=> Training epoch # 166	
+ * Finished epoch # 166     top1:   6.182  top5:   0.225
+	
+=> Training epoch # 167	
+ * Finished epoch # 167     top1:   6.270  top5:   0.195
+	
+=> Training epoch # 168	
+ * Finished epoch # 168     top1:   6.133  top5:   0.195
+	
+=> Training epoch # 169	
+ * Finished epoch # 169     top1:   6.367  top5:   0.225
+	
+=> Training epoch # 170	
+ * Finished epoch # 170     top1:   6.543  top5:   0.234
+	
+=> Training epoch # 171	
+ * Finished epoch # 171     top1:   6.299  top5:   0.244
+	
+=> Training epoch # 172	
+ * Finished epoch # 172     top1:   5.928  top5:   0.205
+	
+ * Best model 	5.927734375	0.205078125	
+=> Training epoch # 173	
+ * Finished epoch # 173     top1:   6.387  top5:   0.205
+	
+=> Training epoch # 174	
+ * Finished epoch # 174     top1:   6.191  top5:   0.176
+	
+=> Training epoch # 175	
+ * Finished epoch # 175     top1:   6.123  top5:   0.195
+	
+=> Training epoch # 176	
+ * Finished epoch # 176     top1:   6.152  top5:   0.215
+	
+=> Training epoch # 177	
+ * Finished epoch # 177     top1:   6.074  top5:   0.215
+	
+=> Training epoch # 178	
+ * Finished epoch # 178     top1:   6.201  top5:   0.225
+	
+=> Training epoch # 179	
+ * Finished epoch # 179     top1:   6.182  top5:   0.225
+	
+=> Training epoch # 180	
+ * Finished epoch # 180     top1:   6.631  top5:   0.244
+	
+=> Training epoch # 181	
+ * Finished epoch # 181     top1:   6.123  top5:   0.186
+	
+=> Training epoch # 182	
+ * Finished epoch # 182     top1:   6.143  top5:   0.234
+	
+=> Training epoch # 183	
+ * Finished epoch # 183     top1:   6.377  top5:   0.400
+	
+=> Training epoch # 184	
+ * Finished epoch # 184     top1:   6.172  top5:   0.215
+	
+=> Training epoch # 185	
+ * Finished epoch # 185     top1:   6.318  top5:   0.244
+	
+=> Training epoch # 186	
+ * Finished epoch # 186     top1:   6.475  top5:   0.225
+	
+=> Training epoch # 187	
+ * Finished epoch # 187     top1:   6.055  top5:   0.205
+	
+=> Training epoch # 188	
+ * Finished epoch # 188     top1:   6.504  top5:   0.195
+	
+=> Training epoch # 189	
+ * Finished epoch # 189     top1:   6.084  top5:   0.195
+	
+=> Training epoch # 190	
+ * Finished epoch # 190     top1:   6.006  top5:   0.205
+	
+=> Training epoch # 191	
+ * Finished epoch # 191     top1:   6.045  top5:   0.176
+	
+=> Training epoch # 192	
+ * Finished epoch # 192     top1:   5.908  top5:   0.186
+	
+ * Best model 	5.908203125	0.185546875	
+=> Training epoch # 193	
+ * Finished epoch # 193     top1:   6.338  top5:   0.205
+	
+=> Training epoch # 194	
+ * Finished epoch # 194     top1:   5.957  top5:   0.215
+	
+=> Training epoch # 195	
+ * Finished epoch # 195     top1:   6.338  top5:   0.205
+	
+=> Training epoch # 196	
+ * Finished epoch # 196     top1:   5.967  top5:   0.176
+	
+=> Training epoch # 197	
+ * Finished epoch # 197     top1:   5.850  top5:   0.186
+	
+ * Best model 	5.849609375	0.185546875	
+=> Training epoch # 198	
+ * Finished epoch # 198     top1:   6.367  top5:   0.195
+	
+=> Training epoch # 199	
+ * Finished epoch # 199     top1:   6.162  top5:   0.186
+	
+=> Training epoch # 200	
+ * Finished epoch # 200     top1:   5.996  top5:   0.234
+	
+ * Finished top1:  5.850  top5:  0.186	
